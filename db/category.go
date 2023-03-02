@@ -3,16 +3,16 @@ package db
 import "gorm.io/gorm"
 
 type Category struct {
-	Id string
+	Id   string
 	Name string
 	Tags []Tag
 }
 
 func CreateCategory(category Category, db gorm.DB) {
-	db.Create(category)	
+	db.Create(category)
 }
 
-func GetCategory(id int, db gorm.DB) (Category, bool) {
+func GetCategory(id string, db gorm.DB) (Category, bool) {
 	category := Category{}
 
 	db.Where("id = ?", id).First(&category)

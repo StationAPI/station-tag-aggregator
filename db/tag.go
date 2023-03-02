@@ -3,14 +3,13 @@ package db
 import "gorm.io/gorm"
 
 type Tag struct {
-	Id string
-	CategoryId int
-	Name string
+	Id         string
+	CategoryId string
+	Name       string
 }
 
-
 func CreateTag(tag Tag, db gorm.DB) {
-	db.Create(tag)	
+	db.Create(tag)
 }
 
 func GetTag(id string, db gorm.DB) (Tag, bool) {
