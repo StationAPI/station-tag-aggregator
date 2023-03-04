@@ -31,5 +31,8 @@ func Create(w http.ResponseWriter, r *http.Request, db gorm.DB) error {
 
 	neon.CreateCategory(category, db)
 
+	w.WriteHeader(200)
+	w.Write([]byte(category.Id))
+
 	return nil
 }

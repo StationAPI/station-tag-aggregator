@@ -18,7 +18,13 @@ func Get(w http.ResponseWriter, r *http.Request, db gorm.DB) error {
 		return errors.New("there is no id in the query parameters")
 	} 
 
-	tag, _ := neon.GetTag(id, db)
+	tag, ok := neon.GetTag(id, db)
+
+	if !ok {
+		http.Error(w, "that tag was not found", http.StatusNotFound)
+
+		return errors.New("that tag was not found")
+	}
 
 	stringified, err := json.Marshal(tag)
 

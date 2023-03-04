@@ -3,9 +3,9 @@ package db
 import "gorm.io/gorm"
 
 type Tag struct {
-	Id         string
-	CategoryId string
-	Name       string
+	Id         string 
+	CategoryId string `json:"category_id"`
+	Name       string `json:"name"`
 }
 
 func CreateTag(tag Tag, db gorm.DB) {
@@ -22,4 +22,12 @@ func GetTag(id string, db gorm.DB) (Tag, bool) {
 	}
 
 	return tag, true
+}
+
+func ListTags(db gorm.DB) []Tag {
+	var tags []Tag
+
+	db.Find(&tags)	
+
+	return tags
 }
